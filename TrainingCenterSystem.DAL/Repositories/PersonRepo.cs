@@ -2,7 +2,7 @@
 
 namespace TrainingCenterSystem.DAL
 {
-    public interface IPersonRepo
+    public class PersonRepo: IPersonRepo
     {
          Task<IEnumerable<Person>> GetAll();
          Task<Person?> GetPersonById(int id);

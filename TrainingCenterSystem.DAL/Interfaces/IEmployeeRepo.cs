@@ -1,7 +1,7 @@
 ﻿using TrainingCenterSystem.Entities;
 
 
-namespace TrainingCenterSystem.DAL.Interfaces
+namespace TrainingCenterSystem.DAL
 {
     public interface IEmployeeRepo
     {

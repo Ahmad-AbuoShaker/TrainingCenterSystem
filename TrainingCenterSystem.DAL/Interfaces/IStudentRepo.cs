@@ -1,13 +1,13 @@
 ﻿using TrainingCenterSystem.Entities;
 
-namespace TrainingCenterSystem.DAL.Interfaces
+namespace TrainingCenterSystem.DAL
 {
     public interface IStudentRepo
     {
-         Task<IEnumerable<Student>> GetAllStudentsAsync();
-         Task<Student?> GetStudentByIdAsync(int id);
-         Task<Student?> CreateStudentAsync(Student student);
-         Task<Student?> UpdateStudentAsync(Student student);
-         Task<Student?> DeleteStudentAsync(int id);
+         Task<IEnumerable<Student>> GetAll();
+         Task<Student?> GetStudentById(int id);
+         Task<bool> CreateStudent(Student student);
+         Task<bool> UpdateStudent(Student student);
+         Task<bool> DeleteStudent(int id);
     }
 }
