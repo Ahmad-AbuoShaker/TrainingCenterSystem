@@ -11,4 +11,10 @@
     <ProjectReference Include="..\TrainingCenterSystem.Entities\TrainingCenterSystem.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interface\" />
+    <Folder Include="DTOs\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>
