@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../Training Center System API/Training Center System API.csproj" />
+  <Project Path="../TrainingCenterSystem.BLL/TrainingCenterSystem.BLL.csproj" />
+  <Project Path="../TrainingCenterSystem.DAL/TrainingCenterSystem.DAL.csproj" />
+  <Project Path="TrainingCenterSystem.Entities.csproj" />
+</Solution>
