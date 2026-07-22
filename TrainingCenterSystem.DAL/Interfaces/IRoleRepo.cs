@@ -5,11 +5,11 @@ namespace TrainingCenterSystem.DAL
 {
     public interface IRoleRepo
     {
-         Task<IEnumerable<Role>> GetAllRolesAsync();
-         Task<Role?> GetRoleByIdAsync(int id);
-         Task<Role?> CreateRoleAsync(Role role);
-         Task<Role?> UpdateRoleAsync(Role role);
-        bool IsRoleExist(int id);
-        bool IsRoleExist(string RoleName);
+         Task<IEnumerable<Role>> GetAll();
+         Task<Role?> GetRoleById(int id);
+         Task<Role?> CreateRole(Role role);
+         Task<Role?> UpdateRole(Role role);
+        Task<bool> IsRoleExist(int id);
+        Task<bool> IsRoleExist (string RoleName);
     }
 }

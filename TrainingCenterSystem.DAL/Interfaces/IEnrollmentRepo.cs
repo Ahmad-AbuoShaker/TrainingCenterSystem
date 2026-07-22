@@ -1,14 +1,16 @@
 ﻿using TrainingCenterSystem.Entities;
 
 
-namespace TrainingCenterSystem.DAL.Interfaces
+namespace TrainingCenterSystem.DAL
 {
     public interface IEnrollmentRepo
     {
-        public Task<IEnumerable<Enrollment>> GetAllEnrollmentsAsync();
-        public Task<Enrollment> GetEnrollmentByIdAsync(int id);
-        public Task<Enrollment> CreateEnrollmentAsync(Enrollment enrollment);
-        public Task<Enrollment> UpdateEnrollmentAsync(Enrollment enrollment);
-        public Task<Enrollment> DeleteEnrollmentAsync(int id);
+         Task<IEnumerable<Enrollment>> GetAllEnrollments();
+        Task<IEnumerable<Enrollment>> GetAllEnrollmentsByStudentId(int studentId);
+        Task<IEnumerable<Enrollment>> GetAllEnrollmentsByCourseId(int courseId);
+         Task<Enrollment?> GetEnrollmentById(int id);
+         Task<bool> CreateEnrollment(Enrollment enrollment);
+         Task<bool> UpdateEnrollment(Enrollment enrollment);
+      
     }
 }

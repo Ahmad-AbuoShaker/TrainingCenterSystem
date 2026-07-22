@@ -1,16 +1,47 @@
-﻿using TrainingCenterSystem.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using TrainingCenterSystem.Entities;
 
 namespace TrainingCenterSystem.DAL
 {
-    public class PersonRepo: IPersonRepo
+    public class PersonRepo : IPersonRepo
     {
-         Task<IEnumerable<Person>> GetAll();
-         Task<Person?> GetPersonById(int id);
-         Task<bool> CreatePerson(Person person);
-         Task<bool> UpdatePerson(Person person);
-         Task<bool> DeletePerson(int id);
+        private readonly TrainingCenterDbContext _context;
 
-        bool IsPhoneNumberExist(string phoneNumber);
+        public PersonRepo(TrainingCenterDbContext context)
+        {
+            _context = context;
+        }
+        public async Task<IEnumerable<Person>> GetAll()
+        {
+            return await _context.People.AsNoTracking().ToListAsync();
+        }
+        public async Task<Person?> GetPersonById(int id)
+        {
+            return await _context.People.AsNoTracking().FirstOrDefaultAsync(p => p.PersonID == id);
+        }
+        public async Task<bool> CreatePerson(Person person)
+        {
+            await _context.People.AddAsync(person);
+            
+            return await _context.SaveChangesAsync() > 0;
+        }
+        public async Task<bool> UpdatePerson(Person person)
+        {
+            _context.People.Update(person);
+            return await _context.SaveChangesAsync() > 0; ;
+        }
+        public async Task<bool> DeletePerson(int id)
+        {
+            var rowsAffected = await _context.People.Where(s => s.PersonID == id)
+                   .ExecuteUpdateAsync(setters => setters
+                .SetProperty(s => s.IsDeleted, true));
+
+            return rowsAffected > 0;
+        }
+        public async Task<bool> IsPhoneNumberExist(string phoneNumber)
+        {
+            return await _context.People.AnyAsync(p => p.PhoneNumber == phoneNumber);
+        }
 
     }
 }

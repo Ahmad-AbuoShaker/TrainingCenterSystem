@@ -10,7 +10,7 @@ namespace TrainingCenterSystem.DAL
          Task<bool> UpdatePerson(Person person);
          Task<bool> DeletePerson(int id);
 
-        bool IsPhoneNumberExist(string phoneNumber);
+        Task<bool> IsPhoneNumberExist(string phoneNumber);
 
     }
 }

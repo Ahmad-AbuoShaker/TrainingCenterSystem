@@ -5,10 +5,10 @@ namespace TrainingCenterSystem.DAL
 {
     public interface IEmployeeRepo
     {
-        public Task<IEnumerable<Employee>> GetAllEmployeesAsync();
-        public Task<Employee> GetEmployeeByIdAsync(int id);
-        public Task<Employee> CreateEmployeeAsync(Employee employee);
-        public Task<Employee> UpdateEmployeeAsync(Employee employee);
-        public Task<Employee> DeleteEmployeeAsync(int id);
+         Task<IEnumerable<Employee>> GetAllEmployees();
+         Task<Employee?> GetEmployeeById(int id);
+         Task<bool> CreateEmployee(Employee employee);
+         Task<bool> UpdateEmployee(Employee employee);
+         Task<bool> DeleteEmployee(int id);
     }
 }

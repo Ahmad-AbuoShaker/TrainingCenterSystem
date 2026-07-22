@@ -13,7 +13,7 @@ namespace TrainingCenterSystem.DAL
             _context = context;
         }
 
-        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        public async Task<IEnumerable<User>> GetAll()
         {
            return await _context.Users.AsNoTracking().ToListAsync();
         }
@@ -29,37 +29,37 @@ namespace TrainingCenterSystem.DAL
         {
             return await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Email == email);
         }
-        public async Task<bool> AddUserAsync(User user)
+        public async Task<bool> AddUser(User user)
         {
             await _context.Users.AddAsync(user);
             return await _context.SaveChangesAsync() > 0;
         }
-        public async Task<bool> UpdateUserAsync(User user)
+        public async Task<bool> UpdateUser(User user)
         {
             _context.Users.Update(user);
             return await _context.SaveChangesAsync() > 0;
         }
-        public bool IsUserNameExist(string UserName)
+        public async Task<bool> IsUserNameExist(string UserName)
         {
-            return  _context.Users.Any(u => u.UserName == UserName);
+            return await _context.Users.AnyAsync(u => u.UserName == UserName);
         }
-        public bool IsEmailExists(string email)
+        public async Task<bool> IsEmailExists(string email)
         {
-            return  _context.Users.Any(u => u.Email == email);
+            return await _context.Users.AnyAsync(u => u.Email == email);
         }
-        public   bool IsUserExist(int id)
+        public async Task<bool> IsUserExist(int id)
         {
-            return  _context.Users.Any(u => u.UserID == id);
+            return await _context.Users.AnyAsync(u => u.UserID == id);
         }
 
-        public bool IsValidToUpdate(int userId, string email, string userName)
+        public async Task<bool> IsValidToUpdate(int userId, string email, string userName)
         {
-            return _context.Users.Any(u => u.UserID != userId &&
+            return await _context.Users.AnyAsync(u => u.UserID != userId &&
                          (u.Email == email || u.UserName == userName));
         }
-        public bool IsValidToCreate(string email, string userName)
+        public async Task<bool> IsValidToCreate(string email, string userName)
         {
-            return _context.Users.Any(u => u.Email == email || u.UserName == userName);
+            return await _context.Users.AnyAsync(u => u.Email == email || u.UserName == userName);
         }
 
     }
